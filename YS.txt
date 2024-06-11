@@ -1,0 +1,55 @@
+#include <graphics.h>
+#include <stdio.h>
+#include <math.h>
+
+// Function to perform Y shear transformation
+void yShear(int x[], int y[], int n, float shy) {
+    int i;
+    for (i = 0; i < n; i++) {
+        y[i] = y[i] + shy * x[i];
+    }
+}
+
+// Function to draw the polygon
+void drawPolygon(int x[], int y[], int n) {
+    int i;
+    for (i = 0; i < n - 1; i++) {
+        line(x[i], y[i], x[i + 1], y[i + 1]);
+    }
+    line(x[n - 1], y[n - 1], x[0], y[0]); // Closing the polygon
+}
+
+int main() {
+    int gd = DETECT, gm;
+    initgraph(&gd, &gm, "");
+
+    // Input coordinates of the polygon
+    int n;
+    printf("Enter the number of vertices (minimum 3): ");
+    scanf("%d", &n);
+
+    int x[n], y[n];
+    printf("Enter the coordinates (x, y) for each vertex:\n");
+    for (int i = 0; i < n; i++) {
+        printf("Vertex %d: ", i + 1);
+        scanf("%d %d", &x[i], &y[i]);
+    }
+
+    // Drawing original polygon
+    drawPolygon(x, y, n);
+
+    // Input shear factor along Y-axis
+    float shy;
+    printf("Enter the shear factor along Y-axis: ");
+    scanf("%f", &shy); // Corrected this line
+
+    // Performing Y shear transformation
+    yShear(x, y, n, shy);
+
+    // Drawing polygon after Y shear transformation
+    drawPolygon(x, y, n);
+
+    getch();
+    closegraph();
+    return 0;
+}

@@ -1,0 +1,31 @@
+#include <conio.h>
+#include <graphics.h>
+#include <stdio.h>
+
+int main() {
+    int x1, y1, x2, y2, x3, y3;
+    printf("Enter coordinate of vertex 1: ");
+    scanf("%d%d", &x1, &y1);
+    printf("Enter coordinate of vertex 2: ");
+    scanf("%d%d", &x2, &y2);
+    printf("Enter coordinate of vertex 3: ");
+    scanf("%d%d", &x3, &y3);
+
+    initwindow(600, 600);
+
+    // Draw the original triangle
+    setcolor(14);
+    line(x1, y1, x2, y2);
+    line(x2, y2, x3, y3);
+    line(x3, y3, x1, y1);
+
+    // Reflect about X-axis
+    setcolor(4);
+    line(x1, -y1 + getmaxy(), x2, -y2 + getmaxy());
+    line(x2, -y2 + getmaxy(), x3, -y3 + getmaxy());
+    line(x3, -y3 + getmaxy(), x1, -y1 + getmaxy());
+
+    getch();
+    closegraph();
+    return 0;
+}

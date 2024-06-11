@@ -1,0 +1,36 @@
+#include<graphics.h>
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+	float x1,y1,x2,y2,x,y,dx,dy,steps;
+	printf("Enter the value of x1:");
+	scanf("%f",&x1);
+	printf("Enter the value of x2:");
+	scanf("%f",&x2);
+	printf("Enter the value of y1:");
+	scanf("%f",&y1);
+	printf("Enter the value of y2:");
+	scanf("%f",&y2);
+	initwindow(500,500);
+	dx=abs(x2-x1);
+	dy=abs(y2-y1);
+	if(dx>=dy)
+		steps=dx;
+	else
+		steps=dy;
+	x=x1;
+	y=y1;
+	int i=1;
+	while(i<=steps)
+	{
+		putpixel(x,y,15);
+		x=x+(dx/steps);
+		y=y+(dy/steps);
+		i++;
+		delay(100);
+	}
+	getch();
+	closegraph();
+	return 0;
+}

@@ -1,0 +1,50 @@
+#include <stdio.h>
+#include <graphics.h>
+
+void translateTriangle(int *x1, int *y1, int *x2, int *y2, int *x3, int *y3, int tx, int ty) {
+    *x1 += tx;
+    *y1 += ty;
+    *x2 += tx;
+    *y2 += ty;
+    *x3 += tx;
+    *y3 += ty;
+}
+
+void drawTriangle(int x1, int y1, int x2, int y2, int x3, int y3) {
+    line(x1, y1, x2, y2);
+    line(x2, y2, x3, y3);
+    line(x3, y3, x1, y1);
+}
+
+
+int main() {
+    int x1, y1, x2, y2, x3, y3;
+    printf("Enter coordinate of vertex 1: ");
+    scanf("%d%d", &x1, &y1);
+    printf("Enter coordinate of vertex 2: ");
+    scanf("%d%d", &x2, &y2);
+    printf("Enter coordinate of vertex 3: ");
+    scanf("%d%d", &x3, &y3);
+
+    int tx, ty;
+    printf("Enter translation value of x coordinate: ");
+    scanf("%d", &tx);
+    printf("Enter translation value of y coordinate: ");
+    scanf("%d", &ty);
+
+    initwindow(600, 600);
+
+    // Draw original triangle
+    drawTriangle(x1, y1, x2, y2, x3, y3);
+
+    // Translate the scaled triangle
+    translateTriangle(&x1, &y1, &x2, &y2, &x3, &y3, tx, ty);
+
+    // Draw translated triangle
+    drawTriangle(x1, y1, x2, y2, x3, y3);
+
+    getch();
+    closegraph();
+
+    return 0;
+}
